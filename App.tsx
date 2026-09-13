@@ -1,23 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-    SafeAreaProvider,
-    useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider, useSafeAreaInsets, } from 'react-native-safe-area-context';
+import HeroSection from './components/hero-section';
 
 function App() {
-    const isDarkMode = useColorScheme() === 'dark';
+    // const isDarkMode = useColorScheme() === 'dark';
 
     return (
         <SafeAreaProvider>
-            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+            <StatusBar barStyle='dark-content' />
             <AppContent />
         </SafeAreaProvider>
     );
@@ -27,11 +17,8 @@ function AppContent() {
     const safeAreaInsets = useSafeAreaInsets();
 
     return (
-        <View style={styles.container}>
-            <NewAppScreen
-                templateFileName="App.tsx"
-                safeAreaInsets={safeAreaInsets}
-            />
+        <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
+            <HeroSection topInset={safeAreaInsets.top}/>
         </View>
     );
 }
@@ -39,6 +26,17 @@ function AppContent() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+    
+    text: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#fff',
     },
 });
 
