@@ -1,43 +1,22 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
-import { SafeAreaProvider, useSafeAreaInsets, } from 'react-native-safe-area-context';
-import HeroSection from './components/hero-section';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/home-screen';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
-    // const isDarkMode = useColorScheme() === 'dark';
-
     return (
         <SafeAreaProvider>
-            <StatusBar barStyle='dark-content' />
-            <AppContent />
+            <StatusBar barStyle="dark-content" />
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Home" component={HomeScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
         </SafeAreaProvider>
     );
 }
-
-function AppContent() {
-    const safeAreaInsets = useSafeAreaInsets();
-
-    return (
-        <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-            <HeroSection topInset={safeAreaInsets.top}/>
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        paddingLeft: 8,
-        paddingRight: 8,
-    },
-    
-    text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#fff',
-    },
-});
 
 export default App;

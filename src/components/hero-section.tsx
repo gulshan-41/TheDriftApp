@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-function HeroSection({ topInset }: { topInset: number }) {
+function HeroSection() {
     //const { width } = useWindowDimensions();
 
     return (
-        <View style={[styles.heroContainer, { paddingTop: topInset }]}>
+        <View style={styles.heroContainer}>
             <Text style={styles.title}>SAVOR THE{'\n'}FLAVOR.</Text>
             <View style={styles.divider} />
             <Text style={styles.subtitle}>
