@@ -1,24 +1,26 @@
 import { useState, useRef } from 'react';
-import { StyleSheet, Text, View, Pressable, Animated } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Animated, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
+import storyImages from '../../assets/image-maps/story-images';
 
 const SCROLL_GAP = 4;
 
 const cards = [
-    { id: 'story1', color: '#04878F' },
-    { id: 'story2', color: '#F4B42C' },
-    { id: 'story3', color: '#B31313' },
-    { id: 'story4', color: '#64C8A1' },
+    { id: 'story1' },
+    { id: 'story2' },
+    { id: 'story3' },
+    { id: 'story4' },
+    { id: 'story5' },
+    { id: 'story6' },
+    { id: 'story7' },
+    { id: 'story8' },
+    { id: 'story9' },
 ];
 
-function HeroSection() {
-    const [frameWidth, setFrameWidth] = useState(0);
+function HeroSection({ frameWidth }) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [likedMap, setLikedMap] = useState({});
     const translateX = useRef(new Animated.Value(0)).current;
-
-    const onFrameLayout = (event) => {
-        setFrameWidth(event.nativeEvent.layout.width);
-    };
 
     const cardStride = frameWidth + SCROLL_GAP;
 
@@ -38,18 +40,26 @@ function HeroSection() {
     const isFirst = currentIndex === 0;
     const isLast = currentIndex === cards.length - 1;
 
+    const currentId = cards[currentIndex].id;
+    const liked = !!likedMap[currentId];
+
+    const toggleLike = () =>
+        setLikedMap((prev) => ({ ...prev, [currentId]: !prev[currentId] }));
+
     return (
         <View style={styles.heroSection}>
             <View style={styles.heroWrapper}>
                 <View style={styles.heroHero}>
                     <Text style={styles.title}>SAVOR THE{'\n'}FLAVOR.</Text>
-                    <View style={styles.divider} />
-                    <Text style={styles.subtitle}>
-                        Find your flavour at THE DRIFT's charming cafe oasis.
-                    </Text>
+                    <View style={styles.dividerSubtitleWrapper}>
+                        <View style={styles.divider} />
+                        <Text style={styles.subtitle}>
+                            Find your flavour at THE DRIFT's charming cafe oasis.
+                        </Text>
+                    </View>
                 </View>
                 <View style={styles.storiesSection}>
-                    <View style={styles.storiesFrame} onLayout={onFrameLayout}>
+                    <View style={styles.storiesFrame}>
                         {frameWidth > 0 && (
                             <>
                                 <Animated.View
@@ -59,20 +69,23 @@ function HeroSection() {
                                     ]}
                                 >
                                     {cards.map((card) => (
-                                        <View
+                                        <Image
                                             key={card.id}
-                                            style={[
-                                                styles.storyCards,
-                                                { width: frameWidth, backgroundColor: card.color },
-                                            ]}
+                                            source={storyImages[card.id]}
+                                            style={[styles.storyCards, { width: frameWidth }]}
+                                            resizeMode="cover"
                                         />
                                     ))}
                                 </Animated.View>
 
                                 <View style={styles.navLoveBtnsWrapper}>
                                     <View>
-                                        <Pressable style={styles.loveBtn}>
-                                            <Icon name="heart-outlined" size={20} color="#fff" />
+                                        <Pressable style={styles.loveBtn} onPress={toggleLike}>
+                                            <Icon
+                                                name={liked ? "heart" : "heart-outlined"}
+                                                size={20}
+                                                color={liked ? "#FF4D8D" : "#fff"}
+                                            />
                                         </Pressable>
                                     </View>
                                     <View style={styles.navBtnsWrapper}>
@@ -108,27 +121,27 @@ const styles = StyleSheet.create({
     heroWrapper: {
         width: '100%',
         flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'stretch',
         gap: 8,
     },
     heroHero: {
+        height: 260,
         width: '100%',
         backgroundColor: '#0d1b2a',
-        padding: 24,
-        borderRadius: 24,
+        padding: 20,
+        borderRadius: 20,
+        justifyContent: 'space-between'
     },
     title: {
         fontSize: 40,
         fontWeight: '900',
         color: '#fff',
-        lineHeight: 40,
-        marginBottom: 50,
+        lineHeight: 34,
     },
     divider: {
         height: 1,
         backgroundColor: '#fff',
-        marginVertical: 20,
+        marginVertical: 14,
     },
     subtitle: {
         fontSize: 12,
@@ -140,7 +153,7 @@ const styles = StyleSheet.create({
     },
     storiesFrame: {
         overflow: 'hidden',
-        borderRadius: 24,
+        borderRadius: 20,
         position: 'relative',
     },
     storyCardsWrapper: {
@@ -148,8 +161,8 @@ const styles = StyleSheet.create({
         gap: SCROLL_GAP,
     },
     storyCards: {
-        height: 540,
-        borderRadius: 24,
+        height: 570,
+        borderRadius: 20,
     },
 
     navLoveBtnsWrapper: {
@@ -168,7 +181,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 13,
-        borderRadius: 12,
+        borderRadius: 14,
         backgroundColor: '#00000072',
     },
     
@@ -182,7 +195,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 14,
-        borderRadius: 12,
+        borderRadius: 14,
         backgroundColor: '#00000072',
     },
 });
