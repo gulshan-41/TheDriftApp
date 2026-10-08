@@ -1,0 +1,248 @@
+{
+    "burger": [
+        {
+            "id": "burger_001",
+            "name": "Korean Spicy Chicken Burger",
+            "description": "A fiery Korean-inspired burger with crispy fried chicken, spicy gochujang sauce, fresh lettuce, and pickled radish in a toasted bun.",
+            "price": 320.00
+        },
+        {
+            "id": "burger_002",
+            "name": "Korean Egg Burger",
+            "description": "A savory delight featuring a perfectly fried egg, tender chicken patty, kimchi slaw, and a tangy soy mayo in a soft sesame bun.",
+            "price": 300.00
+        },
+        {
+            "id": "burger_003",
+            "name": "Crispy Veggie Burger",
+            "description": "A wholesome veggie patty packed with fresh vegetables and spices, topped with crisp lettuce, tomato, and a creamy herb sauce.",
+            "price": 280.00
+        },
+        {
+            "id": "burger_004",
+            "name": "Crispy Double Chicken Burger",
+            "description": "Double the crunch with two crispy chicken patties, melted cheddar, fresh lettuce, and a zesty garlic aioli in a toasted bun.",
+            "price": 360.00
+        },
+        {
+            "id": "burger_005",
+            "name": "Grilled Chicken & Cheese Burger",
+            "description": "Juicy grilled chicken breast smothered in melted cheese, paired with fresh lettuce, tomatoes, and a smoky BBQ sauce in a brioche bun.",
+            "price": 340.00
+        }
+    ],
+    "pasta": [
+        {
+            "id": "pasta_001",
+            "name": "Mac n Cheese",
+            "description": "Creamy, cheesy goodness with tender macaroni smothered in a rich cheddar sauce, baked to golden perfection.",
+            "price": "300.00"
+        },
+        {
+            "id": "pasta_002",
+            "name": "Hot Veggie Pasta",
+            "description": "Al dente pasta tossed with roasted vegetables, garlic, and a spicy marinara sauce, sprinkled with Parmesan.",
+            "price": "280.00"
+        },
+        {
+            "id": "pasta_003",
+            "name": "Spaghetti Carbonara",
+            "description": "Classic spaghetti coated in a velvety sauce with crispy pancetta, egg, and Parmesan, finished with cracked black pepper.",
+            "price": "350.00"
+        },
+        {
+            "id": "pasta_004",
+            "name": "Spaghetti and Meatballs",
+            "description": "Juicy meatballs nestled in al dente spaghetti, topped with a robust tomato sauce and a sprinkle of fresh herbs.",
+            "price": "360.00"
+        },
+        {
+            "id": "pasta_005",
+            "name": "Cheese Lasagna",
+            "description": "Layers of pasta, rich tomato sauce, creamy ricotta, and melted mozzarella, baked to a bubbly, cheesy finish.",
+            "price": "340.00"
+        }
+    ],
+    "pizza": [
+        {
+            "id": "pizza_001",
+            "name": "Chicken Dominator",
+            "description": "A meat lover's delight featuring succulent grilled chicken, spicy pepperoni, and a blend of mozzarella and cheddar cheeses on a perfectly baked crust.",
+            "price": "450.00"
+        },
+        {
+            "id": "pizza_002",
+            "name": "Veggies Paradise",
+            "description": "A vibrant medley of fresh bell peppers, mushrooms, olives, and cherry tomatoes, topped with creamy mozzarella on a thin, crispy crust.",
+            "price": "380.00"
+        },
+        {
+            "id": "pizza_003",
+            "name": "Classic Italian Pizza (Parmesan Cheese)",
+            "description": "An authentic Italian experience with a rich tomato sauce base, fresh basil, and a generous dusting of nutty Parmesan cheese on a hand-tossed crust.",
+            "price": "420.00"
+        },
+        {
+            "id": "pizza_004",
+            "name": "Classic Italian Pizza (Burrata Cheese)",
+            "description": "Indulge in creamy burrata cheese atop a classic tomato sauce and fresh basil, finished with a drizzle of olive oil on a golden crust.",
+            "price": "480.00"
+        },
+        {
+            "id": "pizza_005",
+            "name": "American Double Cheese Pizza",
+            "description": "A cheesy extravaganza with a double layer of gooey mozzarella and cheddar, paired with a robust tomato sauce on a thick, fluffy crust.",
+            "price": "400.00"
+        }
+    ],
+    "sandwich": [
+        {
+            "id": "sandwich_001",
+            "name": "Paneer n Cheese Grilled Sandwich",
+            "description": "Grilled to perfection with spiced paneer, melted cheese, and a hint of green chutney between toasted bread slices.",
+            "price": "240.00"
+        },
+        {
+            "id": "sandwich_002",
+            "name": "Chicken Cheese Grilled Sandwich",
+            "description": "Tender grilled chicken with gooey cheese, fresh veggies, and a smoky mayo spread, grilled to a crisp golden brown.",
+            "price": "270.00"
+        },
+        {
+            "id": "sandwich_003",
+            "name": "Healthy Veggie Sandwich",
+            "description": "A fresh mix of cucumber, tomatoes, lettuce, and avocado with a light herb dressing, served on whole-grain bread.",
+            "price": "220.00"
+        },
+        {
+            "id": "sandwich_004",
+            "name": "Turkey Club Sandwich",
+            "description": "A classic triple-decker with roasted turkey, crispy bacon, lettuce, tomato, and mayo, served on toasted bread.",
+            "price": "300.00"
+        }
+    ],
+    "wraps": [
+        {
+            "id": "wrap_001",
+            "name": "Big Spicy Chicken Wrap",
+            "description": "A hearty wrap stuffed with tender spicy chicken, crisp lettuce, tomatoes, and a fiery chipotle sauce, all rolled in a soft tortilla.",
+            "price": "290.00"
+        },
+        {
+            "id": "wrap_002",
+            "name": "Hot Veggies Wrap",
+            "description": "A warm tortilla filled with sautéed bell peppers, zucchini, onions, and a tangy herb dressing, perfect for a veggie-packed meal.",
+            "price": "250.00"
+        }
+    ],
+    "ramen": [
+        {
+            "id": "ramen_001",
+            "name": "Shoyu Ramen",
+            "description": "A savory soy-based broth with tender noodles, sliced pork, seaweed, and green onions, finished with a soft-boiled egg.",
+            "price": "320.00"
+        },
+        {
+            "id": "ramen_002",
+            "name": "Buldak Hot Ramen",
+            "description": "Fiery ramen with spicy chicken, chewy noodles, and a bold chili-infused broth, topped with sesame seeds and scallions.",
+            "price": "340.00"
+        },
+        {
+            "id": "ramen_003",
+            "name": "Miso Ramen",
+            "description": "Rich miso broth with wavy noodles, corn, bean sprouts, and tofu, garnished with nori and a dash of sesame oil.",
+            "price": "300.00"
+        }
+    ],
+    "noodles": [
+        {
+            "id": "noodles_001",
+            "name": "Spicy Chicken Noodles",
+            "description": "Stir-fried noodles with tender chicken, bell peppers, and a fiery soy-chili sauce, garnished with spring onions.",
+            "price": "280.00"
+        },
+        {
+            "id": "noodles_002",
+            "name": "Veg Noodles",
+            "description": "A colorful mix of stir-fried noodles with crisp carrots, cabbage, and beans, tossed in a savory soy-garlic sauce.",
+            "price": "240.00"
+        },
+        {
+            "id": "noodles_003",
+            "name": "Soupy Noodles",
+            "description": "Slurpy noodles in a flavorful vegetable broth, packed with mushrooms, greens, and a hint of ginger for warmth.",
+            "price": "260.00"
+        }
+    ],
+    "deserts": [
+        {
+            "id": "desert_001",
+            "name": "Loaded Chocolate Cake",
+            "description": "A decadent chocolate cake layered with rich ganache, topped with chocolate chunks and a dusting of cocoa powder.",
+            "price": "200.00"
+        },
+        {
+            "id": "desert_002",
+            "name": "Cheese Cake",
+            "description": "Creamy, smooth cheesecake with a buttery graham cracker crust, finished with a sweet berry compote.",
+            "price": "220.00"
+        },
+        {
+            "id": "desert_003",
+            "name": "Red Velvet Cake",
+            "description": "A moist, vibrant red velvet cake with a velvety texture, topped with luscious cream cheese frosting.",
+            "price": "210.00"
+        },
+        {
+            "id": "desert_004",
+            "name": "French Macarons",
+            "description": "Delicate, colorful macarons with a crisp shell and a soft, chewy center, filled with creamy ganache.",
+            "price": "150.00"
+        },
+        {
+            "id": "desert_005",
+            "name": "Double Chocolate Macarons",
+            "description": "Rich chocolate macarons with a smooth, decadent chocolate filling, perfect for chocolate lovers.",
+            "price": "160.00"
+        },
+        {
+            "id": "desert_006",
+            "name": "Chocolate Loaded Pastry",
+            "description": "A flaky pastry bursting with rich chocolate cream, drizzled with dark chocolate glaze.",
+            "price": "180.00"
+        },
+        {
+            "id": "desert_007",
+            "name": "Pistachio Pastry",
+            "description": "A nutty pistachio-flavored pastry with a creamy filling, topped with crunchy pistachio pieces.",
+            "price": "190.00"
+        }
+    ],
+    "beverages": [
+        {
+            "id": "beverage_001",
+            "name": "Shirley Temple",
+            "description": "A refreshing, non-alcoholic mocktail with ginger ale, grenadine, and a splash of lemon-lime soda, garnished with a cherry.",
+            "price": "120.00"
+        },
+        {
+            "id": "beverage_002",
+            "name": "Blue Lagoon",
+            "description": "A vibrant blue mocktail with lemonade, blue curaçao syrup, and a hint of lime, served over ice.",
+            "price": "130.00"
+        },
+        {
+            "id": "beverage_003",
+            "name": "Arnold Palmer",
+            "description": "A classic blend of iced tea and lemonade, perfectly balanced for a crisp, refreshing drink.",
+            "price": "110.00"
+        },
+        {
+            "id": "beverage_004",
+            "name": "Roy Rogers",
+            "description": "A fizzy mix of cola, grenadine, and a touch of lime, served chilled with a maraschino cherry.",
+            "price": "120.00"
+        }
+    ]
+}
