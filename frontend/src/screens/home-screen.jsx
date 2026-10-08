@@ -3,6 +3,7 @@ import { View, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HeroSection from '../components/hero-section';
 import MenuSection from '../components/menu-section';
+import AboutSection from '../components/about-section';
 
 function HomeScreen() {
     const insets = useSafeAreaInsets();
@@ -26,6 +27,7 @@ function HomeScreen() {
             >
                 <HeroSection frameWidth={frameWidth} />
                 <MenuSection frameWidth={frameWidth} />
+                <AboutSection />
                 <View style={styles.space} />
             </View>
         </ScrollView>
