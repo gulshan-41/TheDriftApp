@@ -88,12 +88,6 @@ function MenuSection({ frameWidth }) {
                     <DishesCardsGrid dishes={DishesData.sandwich}/>
                 </View>
             </ScrollView>
-            <View style={styles.wrapsSection}>
-                <Text style={[ styles.catHeading, { textAlign: 'center' } ]}>WRAPS</Text>
-                <View style={styles.wrapsCardWrapper}>
-                    <DishesCardsGrid dishes={DishesData.wraps}/>
-                </View>
-            </View>
             <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
                 <View style={styles.menuFrameWrapper}>
                     <View style={[
@@ -208,18 +202,6 @@ const styles = StyleSheet.create({
         borderRadius: 14,
         backgroundColor: '#00000072',
     },
-
-    wrapsSection: {
-        backgroundColor: '#0d1b2a',
-        padding: 20,
-        borderRadius: 20,
-        gap: 16,
-    },
-    wrapsCardWrapper: {
-        flexDirection: 'row',
-        gap: 8,
-        width: '100%',
-    }
 })
 
 export default MenuSection;
