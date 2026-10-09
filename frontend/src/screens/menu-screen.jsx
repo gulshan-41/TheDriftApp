@@ -1,15 +1,13 @@
 import { View, StyleSheet } from 'react-native';
 import MainLayout from '../layout/main-layout';
-import HeroSection from '../components/hero-section';
-import AboutSection from '../components/about-section';
+import MenuSection from '../components/menu-section';
 
-function HomeScreen() {
+function MenuScreen() {
     return (
         <MainLayout>
             {(frameWidth) => (
                 <>
-                    <HeroSection frameWidth={frameWidth} />
-                    <AboutSection />
+                    <MenuSection frameWidth={frameWidth} />
                     <View style={styles.space} />
                 </>
             )}
@@ -23,4 +21,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+export default MenuScreen;
