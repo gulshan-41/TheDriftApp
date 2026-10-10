@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { StyleSheet, View, ScrollView, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useScroll } from '../context/scroll-context';
 
 function MainLayout({ children }) {
+    const { onScrollBeginDrag, onScrollEndDrag, onMomentumScrollEnd } = useScroll();
+
     const insets = useSafeAreaInsets();
     const { width } = useWindowDimensions();
     const isWideScreen = width > 600;
@@ -14,6 +17,9 @@ function MainLayout({ children }) {
 
     return (
         <ScrollView
+            onScrollBeginDrag={onScrollBeginDrag}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
             showsVerticalScrollIndicator={false}
             style={[styles.screenWrapper, { paddingTop: insets.top + 4 }]}
         >
@@ -21,7 +27,6 @@ function MainLayout({ children }) {
                 style={[styles.contentWrapper, isWideScreen && styles.contentWide]}
                 onLayout={onContentLayout}
             >
-                {/* Passes measured frameWidth down to whatever screen is inside */}
                 {typeof children === 'function' ? children(frameWidth) : children}
             </View>
         </ScrollView>

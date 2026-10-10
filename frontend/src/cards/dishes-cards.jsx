@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import dishesImage from "../../assets/image-maps/dishes-image-map";
@@ -185,4 +185,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DishesCards;
+export default memo(DishesCards);

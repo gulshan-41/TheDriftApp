@@ -1,28 +1,20 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import { useEffect, useRef } from "react";
+import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
-import DishesCardsGrid from "../cards-grid/dishes-cards-grid";
+import DishesCards from "../cards/dishes-cards";
 import DishesData from "../../assets/data/dishes-data.json"
 
 function MenuSection({ frameWidth }) {
-    const pastaScrollRef = useRef(null);
-
-    useEffect(() => {
-        setTimeout(() => {
-            pastaScrollRef.current?.scrollToEnd({
-                animated: false
-            });
-        }, 0);
-    }, []);
-
     return (
         <View style={styles.menuNavSection}>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth }
-                    ]}>
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.burger}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
+                    <View style={[styles.menuFrame, { width: frameWidth }]}>
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>BURGERS</Text>
                             <Pressable style={styles.nextBtn}>
@@ -30,20 +22,22 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.burger}/>
-                </View>
-            </ScrollView>
-            <ScrollView 
-                style={styles.scrollCats} 
-                ref={pastaScrollRef}
-                horizontal 
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.pasta}
+                horizontal
+                inverted
                 showsHorizontalScrollIndicator={false}
-            >
-                <View style={styles.menuFrameWrapper}>
-                    <DishesCardsGrid dishes={DishesData.pasta}/>
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <DishesCards dish={item} />}
+                ListHeaderComponent={
                     <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth },
+                        styles.menuFrame, 
+                        { width: frameWidth }, 
                         { backgroundColor: '#a01010' }
                     ]}>
                         <View style={styles.contentWrapper}>
@@ -53,10 +47,16 @@ function MenuSection({ frameWidth }) {
                             <Text style={styles.catHeading}>PASTA</Text>
                         </View>
                     </View>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
+                }
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.pizza}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
                     <View style={[
                         styles.menuFrame,
                         { width: frameWidth },
@@ -69,15 +69,18 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.pizza}/>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth }
-                    ]}>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.sandwich}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
+                    <View style={[styles.menuFrame, { width: frameWidth }]}>
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>SANDWICH</Text>
                             <Pressable style={styles.nextBtn}>
@@ -85,11 +88,17 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.sandwich}/>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.ramen}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
                     <View style={[
                         styles.menuFrame,
                         { width: frameWidth },
@@ -102,11 +111,17 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.ramen}/>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.noodles}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
                     <View style={[
                         styles.menuFrame,
                         { width: frameWidth },
@@ -119,31 +134,37 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.noodles}/>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth }
-                    ]}>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.deserts}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
+                    <View style={[styles.menuFrame, { width: frameWidth }]}>
                         <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>DESSERT</Text>
+                            <Text style={styles.catHeading}>DESERTS</Text>
                             <Pressable style={styles.nextBtn}>
                                 <Icon name="chevron-thin-right" size={18} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.deserts}/>
-                </View>
-            </ScrollView>
-            <ScrollView style={styles.scrollCats} horizontal showsHorizontalScrollIndicator={false}>
-                <View style={styles.menuFrameWrapper}>
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth }
-                    ]}>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
+            <FlatList
+                style={styles.scrollCats}
+                data={DishesData.beverages}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.menuFrameWrapper}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={
+                    <View style={[styles.menuFrame, { width: frameWidth }]}>
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>BEVERAGES</Text>
                             <Pressable style={styles.nextBtn}>
@@ -151,9 +172,9 @@ function MenuSection({ frameWidth }) {
                             </Pressable>
                         </View>
                     </View>
-                    <DishesCardsGrid dishes={DishesData.beverages}/>
-                </View>
-            </ScrollView>
+                }
+                renderItem={({ item }) => <DishesCards dish={item} />}
+            />
         </View>
     );
 }
@@ -175,7 +196,6 @@ const styles = StyleSheet.create({
     menuFrameWrapper: {
         flexDirection: 'row',
         gap: 8,
-        width: '100%'
     },
     menuFrame: {
         borderRadius: 20,
