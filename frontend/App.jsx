@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ScrollProvider } from './src/context/scroll-context';
 
 import HomeScreen from './src/screens/home-screen';
 import MenuScreen from './src/screens/menu-screen';
@@ -18,7 +19,10 @@ function Tabs() {
     return (
         <Tab.Navigator
             tabBar={(props) => <NavBar {...props} />}
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ 
+                headerShown: false,
+                animation: 'fade',
+            }}
             backBehavior="history"
         >
             <Tab.Screen name="Home" component={HomeScreen} />
@@ -32,14 +36,16 @@ function Tabs() {
 
 function App() {
     return (
-        <SafeAreaProvider>
-            <StatusBar barStyle="dark-content" />
-            <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    <Stack.Screen name="Tabs" component={Tabs} />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </SafeAreaProvider>
+        <ScrollProvider>
+            <SafeAreaProvider>
+                <StatusBar barStyle="dark-content" />
+                <NavigationContainer>
+                    <Stack.Navigator screenOptions={{ headerShown: false }}>
+                        <Stack.Screen name="Tabs" component={Tabs} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </ScrollProvider>
     );
 }
 

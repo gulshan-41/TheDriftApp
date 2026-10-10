@@ -1,6 +1,12 @@
-import { View, Pressable, StyleSheet } from "react-native";
+import { useEffect, useRef } from 'react';
+import { View, Pressable, StyleSheet, Animated } from 'react-native';
+import { useScroll } from '../context/scroll-context';
 import { Lucide } from '@react-native-vector-icons/lucide';
 import Feather from 'react-native-vector-icons/Feather';
+
+const BUTTON_SIZE = 56;
+const GAP = 8;
+const PADDING = 14;
 
 const ICONS = {
     Home: (color) => <Lucide name="tv-minimal" size={24} color={color} />,
@@ -11,24 +17,54 @@ const ICONS = {
 };
 
 function NavBar({ state, navigation }) {
+    const { translateY } = useScroll();
+
+    const translateX = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        const targetX = state.index * (BUTTON_SIZE + GAP);
+
+        Animated.spring(translateX, {
+            toValue: targetX,
+            useNativeDriver: true,
+            speed: 16,
+            bounciness: 6,
+        }).start();
+    }, [state.index, translateX]);
+
     return (
-        <View style={styles.mainNavBarWrapper} pointerEvents="box-none">
+        <Animated.View 
+            style={[
+                styles.mainNavBarWrapper, 
+                { transform: [{ translateY }] }
+            ]}
+            pointerEvents="box-none"
+        >
             <View style={styles.navBarWrapper}>
+                <Animated.View
+                    style={[
+                        styles.activePill,
+                        { transform: [{ translateX }] },
+                    ]}
+                />
+
                 {state.routes.map((route, index) => {
                     const active = state.index === index;
                     return (
                         <Pressable
                             key={route.key}
-                            style={[styles.navBtn, active && styles.navBtnActive]}
+                            style={styles.navBtn}
                             onPress={() => navigation.navigate(route.name)}
                             accessibilityLabel={route.name}
                         >
-                            {ICONS[route.name](active ? '#000' : '#fff')}
+                            {ICONS[route.name] ? (
+                                ICONS[route.name](active ? '#000' : '#fff')
+                            ) : null}
                         </Pressable>
                     );
                 })}
             </View>
-        </View>
+        </Animated.View>
     );
 }
 
@@ -44,20 +80,28 @@ const styles = StyleSheet.create({
     navBarWrapper: {
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: 8,
-        padding: 14,
+        gap: GAP,
+        padding: PADDING,
         borderRadius: 20,
         backgroundColor: '#00000072',
+        position: 'relative',
+    },
+    activePill: {
+        position: 'absolute',
+        top: PADDING,
+        left: PADDING,
+        width: BUTTON_SIZE,
+        height: BUTTON_SIZE,
+        borderRadius: 14,
+        backgroundColor: '#fff',
     },
     navBtn: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 56,
-        height: 56,
+        width: BUTTON_SIZE,
+        height: BUTTON_SIZE,
         borderRadius: 14,
-    },
-    navBtnActive: {
-        backgroundColor: '#fff',
+        zIndex: 1,
     },
 });
 
