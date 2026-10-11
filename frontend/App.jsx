@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScrollProvider } from './src/context/scroll-context';
+import { CartProvider } from './src/context/cart-context';
 
 import HomeScreen from './src/screens/home-screen';
 import MenuScreen from './src/screens/menu-screen';
@@ -36,16 +37,18 @@ function Tabs() {
 
 function App() {
     return (
-        <ScrollProvider>
-            <SafeAreaProvider>
-                <StatusBar barStyle="dark-content" />
-                <NavigationContainer>
-                    <Stack.Navigator screenOptions={{ headerShown: false }}>
-                        <Stack.Screen name="Tabs" component={Tabs} />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            </SafeAreaProvider>
-        </ScrollProvider>
+        <SafeAreaProvider>
+            <CartProvider>
+                <ScrollProvider>
+                    <StatusBar barStyle="dark-content" />
+                    <NavigationContainer>
+                        <Stack.Navigator screenOptions={{ headerShown: false }}>
+                            <Stack.Screen name="Tabs" component={Tabs} />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </ScrollProvider>
+            </CartProvider>
+        </SafeAreaProvider>
     );
 }
 
