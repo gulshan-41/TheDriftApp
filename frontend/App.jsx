@@ -6,12 +6,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScrollProvider } from './src/context/scroll-context';
 import { CartProvider } from './src/context/cart-context';
 
+import CartScreen from './src/screens/cart-screen';
+import NotificationScreen from './src/screens/notification-screen';
+
 import HomeScreen from './src/screens/home-screen';
 import MenuScreen from './src/screens/menu-screen';
-import CartScreen from './src/screens/cart-screen';
 import ScanScreen from './src/screens/scan-screen';
 import ProfileScreen from './src/screens/profile-screen';
-import NavBar from './src/components/nav-bar';
+
+import BottomNavBar from './src/components/botton-nav-bar';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,7 +22,7 @@ const Stack = createNativeStackNavigator();
 function Tabs() {
     return (
         <Tab.Navigator
-            tabBar={(props) => <NavBar {...props} />}
+            tabBar={(props) => <BottomNavBar {...props} />}
             screenOptions={{ 
                 headerShown: false,
                 animation: 'fade',
@@ -28,7 +31,6 @@ function Tabs() {
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Menu" component={MenuScreen} />
-            <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Scan" component={ScanScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
@@ -44,6 +46,8 @@ function App() {
                     <NavigationContainer>
                         <Stack.Navigator screenOptions={{ headerShown: false }}>
                             <Stack.Screen name="Tabs" component={Tabs} />
+                            <Stack.Screen name="Cart" component={CartScreen} />
+                            <Stack.Screen name="Notifications" component={NotificationScreen} />
                         </Stack.Navigator>
                     </NavigationContainer>
                 </ScrollProvider>

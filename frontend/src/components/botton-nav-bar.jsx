@@ -3,7 +3,6 @@ import { Text, View, Pressable, StyleSheet, Animated } from 'react-native';
 import { useScroll } from '../context/scroll-context';
 import { Lucide } from '@react-native-vector-icons/lucide';
 import Feather from 'react-native-vector-icons/Feather';
-import { useCart } from '../context/cart-context';
 
 const BUTTON_SIZE = 56;
 const GAP = 8;
@@ -17,9 +16,8 @@ const ICONS = {
     Profile: (color) => <Feather name="user" size={26} color={color} />,
 };
 
-function NavBar({ state, navigation }) {
+function BottomNavBar({ state, navigation }) {
     const { translateY } = useScroll();
-    const { totalItems } = useCart();
 
     const translateX = useRef(new Animated.Value(0)).current;
 
@@ -42,7 +40,7 @@ function NavBar({ state, navigation }) {
             ]}
             pointerEvents="box-none"
         >
-            <View style={styles.navBarWrapper}>
+            <View style={styles.bottomNavBarWrapper}>
                 <Animated.View
                     style={[
                         styles.activePill,
@@ -62,12 +60,6 @@ function NavBar({ state, navigation }) {
                             {ICONS[route.name] ? (
                                 ICONS[route.name](active ? '#000' : '#fff')
                             ) : null}
-
-                            {route.name === 'Cart' && totalItems > 0 && (
-                                <View style={styles.badgeWrapper}>
-                                    <Text style={styles.badgeText}>{totalItems > 20 ? '20+' : totalItems}</Text>
-                                </View>
-                            )}
                         </Pressable>
                     );
                 })}
@@ -85,7 +77,7 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 54,
     },
-    navBarWrapper: {
+    bottomNavBarWrapper: {
         flexDirection: 'row',
         justifyContent: 'center',
         gap: GAP,
@@ -111,23 +103,6 @@ const styles = StyleSheet.create({
         borderRadius: 14,
         zIndex: 1,
     },
-
-    badgeWrapper: {
-        position: 'absolute',
-        top: -5,
-        right: -5,
-        minWidth: 22,
-        height: 22,
-        borderRadius: '50%',
-        backgroundColor: '#c91b1b',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    badgeText: {
-        color: '#fff',
-        fontSize: 9,
-        fontWeight: '800',
-    },
 });
 
-export default NavBar;
+export default BottomNavBar;

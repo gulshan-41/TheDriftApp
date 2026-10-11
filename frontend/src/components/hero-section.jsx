@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { StyleSheet, Text, View, Pressable, Animated, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 import storyImages from '../../assets/image-maps/story-images';
 
 const SCROLL_GAP = 4;
@@ -91,12 +92,12 @@ function HeroSection({ frameWidth }) {
                                     <View style={styles.navBtnsWrapper}>
                                         {!isFirst && (
                                             <Pressable style={styles.navBtn} onPress={handlePrev}>
-                                                <Icon name="chevron-thin-left" size={18} color="#fff" />
+                                                <Feather name="chevron-left" size={23} color="#fff" />
                                             </Pressable>
                                         )}
                                         {!isLast && (
                                             <Pressable style={styles.navBtn} onPress={handleNext}>
-                                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                                <Feather name="chevron-right" size={23} color="#fff" />
                                             </Pressable>
                                         )}
                                     </View>
@@ -180,7 +181,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 13,
+        width: 48,
+        height: 48,
         borderRadius: 14,
         backgroundColor: '#00000072',
     },
@@ -194,7 +196,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 14,
+        width: 48,
+        height: 48,
         borderRadius: 14,
         backgroundColor: '#00000072',
     },

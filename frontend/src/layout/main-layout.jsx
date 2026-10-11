@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View, ScrollView, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useScroll } from '../context/scroll-context';
+import TopNavBar from '../components/top-nav-bar';
 
 function MainLayout({ children }) {
     const { onScrollBeginDrag, onScrollEndDrag, onMomentumScrollEnd } = useScroll();
@@ -27,6 +28,7 @@ function MainLayout({ children }) {
                 style={[styles.contentWrapper, isWideScreen && styles.contentWide]}
                 onLayout={onContentLayout}
             >
+                <TopNavBar />
                 {typeof children === 'function' ? children(frameWidth) : children}
             </View>
         </ScrollView>

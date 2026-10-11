@@ -19,6 +19,8 @@ export function CartProvider({ children }) {
         saveCart(items);
     }, [items, isHydrated]);
 
+    const totalItems = Object.values(items).reduce((sum, qty) => sum + qty, 0);
+
     useEffect(() => {
         console.log('CART:', JSON.stringify(items), 'TOTAL:', totalItems);
     }, [items, totalItems]);
@@ -41,7 +43,6 @@ export function CartProvider({ children }) {
     };
 
     const quantity = (id) => items[id] || 0;
-    const totalItems = Object.values(items).reduce((sum, qty) => sum + qty, 0);
 
     return (
         <CartContext.Provider value={{ add, quantity, remove, isHydrated, totalItems }}>
