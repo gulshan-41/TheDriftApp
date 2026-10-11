@@ -222,6 +222,6 @@ const styles = StyleSheet.create({
         borderRadius: 14,
         backgroundColor: '#00000072',
     },
-})
+});
 
 export default MenuSection;

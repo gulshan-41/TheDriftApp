@@ -2,14 +2,18 @@ import { useState, memo } from "react";
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import dishesImage from "../../assets/image-maps/dishes-image-map";
+import { useCart } from "../context/cart-context";
 
 function DishesCards({ dish }) {
     const [liked, setLiked] = useState(false);
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     const toggleLike = () => setLiked((prev) => !prev);
-    const increment = () => setCount((prev) => prev + 1);
-    const decrement = () => setCount((prev) => Math.max(0, prev - 1));
+    // const increment = () => setCount((prev) => prev + 1);
+    // const decrement = () => setCount((prev) => Math.max(0, prev - 1));
+
+    const { add, remove, quantity } = useCart();
+    const count = quantity(dish.id);
 
     return (
         <View style={styles.dishesCardsContainer}>
@@ -49,18 +53,18 @@ function DishesCards({ dish }) {
                         </Pressable>
 
                         {count === 0 ? (
-                            <Pressable style={styles.addBtn} onPress={increment}>
+                            <Pressable style={styles.addBtn} onPress={() => add(dish.id)}>
                                 <Icon name="plus" size={20} color="#fff" />
                             </Pressable>
                         ) : (
                             <View style={styles.addBtnWrapper}>
-                                <Pressable style={styles.minusBtn} onPress={decrement}>
+                                <Pressable style={styles.minusBtn} onPress={() => remove(dish.id)}>
                                     <Icon name="minus" size={20} color="#fff" />
                                 </Pressable>
                                 <View style={styles.count}>
                                     <Text style={styles.countText}>{count}</Text>
                                 </View>
-                                <Pressable style={styles.plusBtn} onPress={increment}>
+                                <Pressable style={styles.plusBtn} onPress={() => add(dish.id)}>
                                     <Icon name="plus" size={20} color="#fff" />
                                 </Pressable>
                             </View>
