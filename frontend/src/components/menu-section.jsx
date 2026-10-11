@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
-import Icon from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 import DishesCards from "../cards/dishes-cards";
 import DishesData from "../../assets/data/dishes-data.json"
 
@@ -18,7 +18,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>BURGERS</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -42,7 +42,7 @@ function MenuSection({ frameWidth }) {
                     ]}>
                         <View style={styles.contentWrapper}>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-left" size={18} color="#fff" />
+                                <Feather name="chevron-left" size={22} color="#fff" />
                             </Pressable>
                             <Text style={styles.catHeading}>PASTA</Text>
                         </View>
@@ -65,7 +65,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>PIZZA</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -84,7 +84,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>SANDWICH</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -107,7 +107,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>RAMEN</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -130,7 +130,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>NOODLES</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -149,7 +149,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>DESERTS</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -168,7 +168,7 @@ function MenuSection({ frameWidth }) {
                         <View style={styles.contentWrapper}>
                             <Text style={styles.catHeading}>BEVERAGES</Text>
                             <Pressable style={styles.nextBtn}>
-                                <Icon name="chevron-thin-right" size={18} color="#fff" />
+                                <Feather name="chevron-right" size={22} color="#fff" />
                             </Pressable>
                         </View>
                     </View>
@@ -218,7 +218,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 14,
+        width: 48,
+        height: 48,
         borderRadius: 14,
         backgroundColor: '#00000072',
     },

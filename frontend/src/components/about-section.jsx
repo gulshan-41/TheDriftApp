@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
-import Icon from "react-native-vector-icons/Entypo";
+import Feather from 'react-native-vector-icons/Feather';
 
 function AboutSection() {
     return (
@@ -18,7 +18,7 @@ function AboutSection() {
                     <View style={styles.subSection}>
                         <View style={styles.headPoint}>
                             <Pressable style={styles.pointBtn}>
-                                <Icon style={styles.headIcon} name="chevron-thin-right" size={18} color="#000" />
+                                <Feather style={styles.headIcon} name="chevron-right" size={26} color="#000" />
                             </Pressable>
                             <Text style={styles.headText}>
                                 4.8+
@@ -37,7 +37,7 @@ function AboutSection() {
                     <View style={styles.subSection}>
                         <View style={styles.headPoint}>
                             <Pressable style={styles.pointBtn}>
-                                <Icon style={styles.headIcon} name="chevron-thin-right" size={18} color="#000" />
+                                <Feather style={styles.headIcon} name="chevron-right" size={26} color="#000" />
                             </Pressable>
                             <Text style={styles.headText}>
                                 80%
@@ -56,7 +56,7 @@ function AboutSection() {
                     <View style={styles.subSection}>
                         <View style={styles.headPoint}>
                             <Pressable style={styles.pointBtn}>
-                                <Icon style={styles.headIcon} name="chevron-thin-right" size={18} color="#000" />
+                                <Feather style={styles.headIcon} name="chevron-right" size={26} color="#000" />
                             </Pressable>
                             <Text style={styles.headText}>
                                 Chief
@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 14,
+        width: 50,
+        height: 50,
         borderRadius: 14,
         backgroundColor: '#fff',
     },
