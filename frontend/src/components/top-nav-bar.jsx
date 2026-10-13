@@ -15,7 +15,7 @@ function TopNavBar() {
         <View style={styles.topNavBarWrapper}>
             {showBack ? (
                 <Pressable style={styles.navBtn} onPress={() => navigation.goBack()}>
-                    <Feather name="chevron-left" size={26} color="#fff" />
+                    <Feather name="chevron-left" size={24} color="#fff" />
                 </Pressable>
             ) : (
                 <View style={styles.navBtnPlaceholder} />
@@ -31,7 +31,7 @@ function TopNavBar() {
                     )}
                 </Pressable>
                 <Pressable style={styles.navBtn} onPress={() => navigation.navigate('Notifications')}>
-                    <Lucide name="bell" size={22} color="#fff" />
+                    <Lucide name="bell" size={21} color="#fff" />
                 </Pressable>
             </View>
         </View>

@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 
 const ScrollContext = createContext();
 
-const HIDE_DISTANCE = 20;
+const HIDE_DISTANCE = 10;
 
 export function ScrollProvider({ children }) {
     const translateY = useRef(new Animated.Value(0)).current;
@@ -23,7 +23,7 @@ export function ScrollProvider({ children }) {
     const settle = (endOffset) => {
         const diff = endOffset - startOffset.current;
 
-        if (endOffset <= 10) {
+        if (endOffset <= 5) {
             animateTo(false);
         } else if (diff > HIDE_DISTANCE) {
             animateTo(true);

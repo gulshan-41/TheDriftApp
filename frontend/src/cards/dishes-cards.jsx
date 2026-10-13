@@ -27,22 +27,22 @@ function DishesCards({ dish }) {
                 </View>
                 <View style={styles.floatingContainer}>
                     <View style={styles.nameDescPriceWrapper}>
-                <Text 
-                    style={styles.dishName}
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                >   
-                    {dish.name}
-                </Text>
-                <Text 
-                    style={styles.dishDesc}
-                    numberOfLines={2}
-                    ellipsizeMode="tail"
-                >
-                    {dish.description}
-                </Text>
-                <Text style={styles.dishPrice}>{Number(dish.price).toFixed(2)}</Text>
-            </View>
+                        <Text 
+                            style={styles.dishName}
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                        >   
+                            {dish.name}
+                        </Text>
+                        <Text 
+                            style={styles.dishDesc}
+                            numberOfLines={2}
+                            ellipsizeMode="tail"
+                        >
+                            {dish.description}
+                        </Text>
+                        <Text style={styles.dishPrice}>{Number(dish.price).toFixed(2)}</Text>
+                    </View>
                     <View style={styles.addLikeBtnWrapper}>
                         <Pressable style={styles.loveBtn} onPress={toggleLike}>
                             <Icon
@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8,
+        width: 36,
+        height: 36,
         borderRadius: 12,
         backgroundColor: '#00000090',
     },
@@ -154,7 +155,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8,
+        width: 36,
+        height: 36,
         borderRadius: 12,
         backgroundColor: '#00000090',
     },
@@ -162,7 +164,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8,
+        width: 36,
+        height: 36,
         borderRadius: 12,
         backgroundColor: '#00000090',
     },
@@ -170,7 +173,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8,
+        width: 36,
+        height: 36,
         borderRadius: 12,
         backgroundColor: '#00000090',
     },
@@ -178,8 +182,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 14,
-        paddingVertical: 6,
+        width: 36,
+        height: 36,
         borderRadius: 12,
         backgroundColor: '#00000090',
     },
