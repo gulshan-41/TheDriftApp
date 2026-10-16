@@ -1,180 +1,97 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import Feather from 'react-native-vector-icons/Feather';
 import DishesCards from "../cards/dishes-cards";
-import DishesData from "../../assets/data/dishes-data.json"
+import DishesData from "../../assets/data/dishes-data.json";
+
+const GAP = 8;
+const MIN_CARD = 170;
+const MAX_COLUMNS = 4;
+const HEIGHT_RATIO = 1.25;
+const MIN_HEIGHT = 220;
+
+function getCardWidth(frameWidth) {
+    if (frameWidth <= 0) return 0;
+    const fit = Math.floor((frameWidth + GAP) / (MIN_CARD + GAP));
+    const columns = Math.min(MAX_COLUMNS, Math.max(2, fit));
+    return (frameWidth - GAP * (columns - 1)) / columns;
+}
+
+const CATEGORIES = [
+    { key: 'burger', title: 'BURGERS', color: '#0d1b2a' },
+    { key: 'pasta', title: 'PASTA', color: '#a01010', inverted: true },
+    { key: 'pizza', title: 'PIZZA', color: '#a01010' },
+    { key: 'sandwich', title: 'SANDWICH', color: '#0d1b2a' },
+    { key: 'ramen', title: 'RAMEN', color: '#a01010' },
+    { key: 'noodles', title: 'NOODLES', color: '#f3b734' },
+    { key: 'deserts', title: 'DESERTS', color: '#0d1b2a' },
+    { key: 'beverages', title: 'BEVERAGES', color: '#0d1b2a' },
+];
+
+function CategoryRow({ category, frameWidth, cardWidth, rowHeight }) {
+    const { key, title, color, inverted } = category;
+
+    const header = (
+        <View style={[
+            styles.menuFrame, 
+            { width: frameWidth, 
+                height: rowHeight, 
+                backgroundColor: color 
+            }
+        ]}>
+            <View style={styles.contentWrapper}>
+                {inverted ? (
+                    <>
+                        <Pressable style={styles.nextBtn}>
+                            <Feather name="chevron-left" size={22} color="#fff" />
+                        </Pressable>
+                        <Text style={styles.catHeading}>{title}</Text>
+                    </>
+                ) : (
+                    <>
+                        <Text style={styles.catHeading}>{title}</Text>
+                        <Pressable style={styles.nextBtn}>
+                            <Feather name="chevron-right" size={22} color="#fff" />
+                        </Pressable>
+                    </>
+                )}
+            </View>
+        </View>
+    );
+
+    return (
+        <FlatList
+            style={styles.scrollCats}
+            data={DishesData[key]}
+            horizontal
+            inverted={inverted}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.menuFrameWrapper}
+            keyExtractor={(item) => item.id}
+            // snapToInterval={cardWidth + GAP}
+            // decelerationRate="fast"
+            ListHeaderComponent={header}
+            renderItem={({ item }) => (
+                <DishesCards dish={item} width={cardWidth} height={rowHeight} />
+            )}
+        />
+    );
+}
 
 function MenuSection({ frameWidth }) {
+    const cardWidth = getCardWidth(frameWidth);
+    const rowHeight = Math.max(MIN_HEIGHT, cardWidth * HEIGHT_RATIO);
+
     return (
         <View style={styles.menuNavSection}>
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.burger}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[styles.menuFrame, { width: frameWidth }]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>BURGERS</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.pasta}
-                horizontal
-                inverted
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <DishesCards dish={item} />}
-                ListHeaderComponent={
-                    <View style={[
-                        styles.menuFrame, 
-                        { width: frameWidth }, 
-                        { backgroundColor: '#a01010' }
-                    ]}>
-                        <View style={styles.contentWrapper}>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-left" size={22} color="#fff" />
-                            </Pressable>
-                            <Text style={styles.catHeading}>PASTA</Text>
-                        </View>
-                    </View>
-                }
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.pizza}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth },
-                        { backgroundColor: '#a01010' }
-                    ]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>PIZZA</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.sandwich}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[styles.menuFrame, { width: frameWidth }]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>SANDWICH</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.ramen}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth },
-                        { backgroundColor: '#a01010' }
-                    ]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>RAMEN</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.noodles}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[
-                        styles.menuFrame,
-                        { width: frameWidth },
-                        { backgroundColor: '#f3b734' }
-                    ]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>NOODLES</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.deserts}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[styles.menuFrame, { width: frameWidth }]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>DESERTS</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
-            <FlatList
-                style={styles.scrollCats}
-                data={DishesData.beverages}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.menuFrameWrapper}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={
-                    <View style={[styles.menuFrame, { width: frameWidth }]}>
-                        <View style={styles.contentWrapper}>
-                            <Text style={styles.catHeading}>BEVERAGES</Text>
-                            <Pressable style={styles.nextBtn}>
-                                <Feather name="chevron-right" size={22} color="#fff" />
-                            </Pressable>
-                        </View>
-                    </View>
-                }
-                renderItem={({ item }) => <DishesCards dish={item} />}
-            />
+            {CATEGORIES.map((category) => (
+                <CategoryRow
+                    key={category.key}
+                    category={category}
+                    frameWidth={frameWidth}
+                    cardWidth={cardWidth}
+                    rowHeight={rowHeight}
+                />
+            ))}
         </View>
     );
 }
@@ -186,21 +103,18 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         paddingLeft: 8,
         paddingRight: 8,
-        gap: 8,
+        gap: GAP,
     },
-
     scrollCats: {
         flexDirection: 'row',
         borderRadius: 20,
     },
     menuFrameWrapper: {
         flexDirection: 'row',
-        gap: 8,
+        gap: GAP,
     },
     menuFrame: {
         borderRadius: 20,
-        backgroundColor: '#0d1b2a',
-        height: 260,
         padding: 20,
     },
     contentWrapper: {

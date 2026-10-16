@@ -4,22 +4,19 @@ import Icon from 'react-native-vector-icons/Entypo';
 import dishesImage from "../../assets/image-maps/dishes-image-map";
 import { useCart } from "../context/cart-context";
 
-function DishesCards({ dish }) {
+function DishesCards({ dish, width, height }) {
+    console.log('RENDER CARD:', dish.id);
     const [liked, setLiked] = useState(false);
-    // const [count, setCount] = useState(0);
-
     const toggleLike = () => setLiked((prev) => !prev);
-    // const increment = () => setCount((prev) => prev + 1);
-    // const decrement = () => setCount((prev) => Math.max(0, prev - 1));
 
     const { add, remove, quantity } = useCart();
     const count = quantity(dish.id);
 
     return (
-        <View style={styles.dishesCardsContainer}>
+        <View style={[styles.dishesCardsContainer, { width, height }]}>
             <View style={styles.imageContainer}>
                 <View style={styles.imageWrapper}>
-                    <Image 
+                    <Image
                         source={dishesImage[dish.id]}
                         style={styles.image}
                         resizeMode="cover"
@@ -27,24 +24,16 @@ function DishesCards({ dish }) {
                 </View>
                 <View style={styles.floatingContainer}>
                     <View style={styles.nameDescPriceWrapper}>
-                        <Text 
-                            style={styles.dishName}
-                            numberOfLines={1}
-                            ellipsizeMode="tail"
-                        >   
+                        <Text style={styles.dishName} numberOfLines={1} ellipsizeMode="tail">
                             {dish.name}
                         </Text>
-                        <Text 
-                            style={styles.dishDesc}
-                            numberOfLines={2}
-                            ellipsizeMode="tail"
-                        >
+                        <Text style={styles.dishDesc} numberOfLines={2} ellipsizeMode="tail">
                             {dish.description}
                         </Text>
                         <Text style={styles.dishPrice}>{Number(dish.price).toFixed(2)}</Text>
                     </View>
                     <View style={styles.addLikeBtnWrapper}>
-                        <Pressable style={styles.loveBtn} onPress={toggleLike}>
+                        <Pressable style={styles.smallBtn} onPress={toggleLike}>
                             <Icon
                                 name={liked ? "heart" : "heart-outlined"}
                                 size={20}
@@ -53,18 +42,18 @@ function DishesCards({ dish }) {
                         </Pressable>
 
                         {count === 0 ? (
-                            <Pressable style={styles.addBtn} onPress={() => add(dish.id)}>
+                            <Pressable style={styles.smallBtn} onPress={() => add(dish.id)}>
                                 <Icon name="plus" size={20} color="#fff" />
                             </Pressable>
                         ) : (
                             <View style={styles.addBtnWrapper}>
-                                <Pressable style={styles.minusBtn} onPress={() => remove(dish.id)}>
+                                <Pressable style={styles.smallBtn} onPress={() => remove(dish.id)}>
                                     <Icon name="minus" size={20} color="#fff" />
                                 </Pressable>
-                                <View style={styles.count}>
+                                <View style={styles.smallBtn}>
                                     <Text style={styles.countText}>{count}</Text>
                                 </View>
-                                <Pressable style={styles.plusBtn} onPress={() => add(dish.id)}>
+                                <Pressable style={styles.smallBtn} onPress={() => add(dish.id)}>
                                     <Icon name="plus" size={20} color="#fff" />
                                 </Pressable>
                             </View>
@@ -78,10 +67,6 @@ function DishesCards({ dish }) {
 
 const styles = StyleSheet.create({
     dishesCardsContainer: {
-        width: 200,
-        minWidth: 180,
-        flexShrink: 1,
-        minHeight: 220,
         flexDirection: 'column',
         gap: 4,
     },
@@ -94,7 +79,7 @@ const styles = StyleSheet.create({
         borderRadius: 19,
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     image: {
         width: '100%',
@@ -104,31 +89,27 @@ const styles = StyleSheet.create({
         padding: 12,
         backgroundColor: '#00000095',
         borderRadius: 16,
-
-        position: 'relative',
     },
     dishName: {
-        fontWeight: 800,
-        color: '#fff'
+        fontWeight: '800',
+        color: '#fff',
     },
     dishDesc: {
         fontSize: 8,
         marginBottom: 3,
-        color: '#fff'
+        color: '#fff',
     },
     dishPrice: {
-        fontWeight: 800,
+        fontWeight: '800',
         lineHeight: 14,
-        color: '#fff'
+        color: '#fff',
     },
-
     floatingContainer: {
         height: '100%',
         width: '100%',
         justifyContent: 'space-between',
         borderRadius: 19,
         padding: 9,
-
         position: 'absolute',
         bottom: 0,
     },
@@ -138,48 +119,11 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         alignItems: 'flex-end',
     },
-    loveBtn: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        backgroundColor: '#00000090',
-    },
     addBtnWrapper: {
         flexDirection: 'row',
         gap: 4,
     },
-    addBtn: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        backgroundColor: '#00000090',
-    },
-    plusBtn: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        backgroundColor: '#00000090',
-    },
-    minusBtn: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        backgroundColor: '#00000090',
-    },
-    count: {
-        flexDirection: 'row',
+    smallBtn: {
         justifyContent: 'center',
         alignItems: 'center',
         width: 36,
@@ -190,7 +134,7 @@ const styles = StyleSheet.create({
     countText: {
         fontSize: 14,
         color: '#fff',
-    }
+    },
 });
 
 export default memo(DishesCards);
