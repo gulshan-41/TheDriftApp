@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScrollProvider } from './src/context/scroll-context';
-import { CartProvider } from './src/context/cart-context';
+import { cartStore } from './src/store/cart-store';
 
 import CartScreen from './src/screens/cart-screen';
 import NotificationScreen from './src/screens/notification-screen';
@@ -38,20 +39,22 @@ function Tabs() {
 }
 
 function App() {
+    useEffect(() => {
+        cartStore.hydrate();
+    }, []);
+
     return (
         <SafeAreaProvider>
-            <CartProvider>
-                <ScrollProvider>
-                    <StatusBar barStyle="dark-content" />
-                    <NavigationContainer>
-                        <Stack.Navigator screenOptions={{ headerShown: false }}>
-                            <Stack.Screen name="Tabs" component={Tabs} />
-                            <Stack.Screen name="Cart" component={CartScreen} />
-                            <Stack.Screen name="Notifications" component={NotificationScreen} />
-                        </Stack.Navigator>
-                    </NavigationContainer>
-                </ScrollProvider>
-            </CartProvider>
+            <ScrollProvider>
+                <StatusBar barStyle="dark-content" />
+                <NavigationContainer>
+                    <Stack.Navigator screenOptions={{ headerShown: false }}>
+                        <Stack.Screen name="Tabs" component={Tabs} />
+                        <Stack.Screen name="Cart" component={CartScreen} />
+                        <Stack.Screen name="Notifications" component={NotificationScreen} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </ScrollProvider>
         </SafeAreaProvider>
     );
 }

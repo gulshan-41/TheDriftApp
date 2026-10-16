@@ -3,11 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import MainLayout from '../layout/main-layout';
 import MenuSection from '../components/menu-section';
 import MenuSkeleton from '../components/skeletons/menu-skeleton';
-import { useCart } from '../context/cart-context';
+import { useCartHydrated } from '../store/cart-hydrated';
 
 function MenuScreen() {
     const [isReady, setIsReady] = useState(false);
-    const { isHydrated } = useCart();
+    const isHydrated = useCartHydrated();
 
     useEffect(() => {
         const id = requestAnimationFrame(() => setIsReady(true));
