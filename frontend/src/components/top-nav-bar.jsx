@@ -2,12 +2,12 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Lucide } from '@react-native-vector-icons/lucide';
 import Feather from 'react-native-vector-icons/Feather';
-import { useCart } from "../context/cart-context";
+import { useCartTotal } from "../store/cart-total";
 
 function TopNavBar() {
     const navigation = useNavigation();
-    const route = useRoute();
-    const { totalItems } = useCart();
+    const route = useRoute();  
+    const totalItems = useCartTotal();
 
     const showBack = route.name !== 'Home';
 

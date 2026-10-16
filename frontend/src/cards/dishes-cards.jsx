@@ -2,15 +2,15 @@ import { useState, memo } from "react";
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import dishesImage from "../../assets/image-maps/dishes-image-map";
-import { useCart } from "../context/cart-context";
+import { cartStore } from "../store/cart-store";
+import { useDishQuantity } from "../store/dish-quantity";
 
 function DishesCards({ dish, width, height }) {
     console.log('RENDER CARD:', dish.id);
     const [liked, setLiked] = useState(false);
     const toggleLike = () => setLiked((prev) => !prev);
 
-    const { add, remove, quantity } = useCart();
-    const count = quantity(dish.id);
+    const count = useDishQuantity(dish.id);
 
     return (
         <View style={[styles.dishesCardsContainer, { width, height }]}>
@@ -42,18 +42,18 @@ function DishesCards({ dish, width, height }) {
                         </Pressable>
 
                         {count === 0 ? (
-                            <Pressable style={styles.smallBtn} onPress={() => add(dish.id)}>
+                            <Pressable style={styles.smallBtn} onPress={() => cartStore.add(dish.id)}>
                                 <Icon name="plus" size={20} color="#fff" />
                             </Pressable>
                         ) : (
                             <View style={styles.addBtnWrapper}>
-                                <Pressable style={styles.smallBtn} onPress={() => remove(dish.id)}>
+                                <Pressable style={styles.smallBtn} onPress={() => cartStore.remove(dish.id)}>
                                     <Icon name="minus" size={20} color="#fff" />
                                 </Pressable>
                                 <View style={styles.smallBtn}>
                                     <Text style={styles.countText}>{count}</Text>
                                 </View>
-                                <Pressable style={styles.smallBtn} onPress={() => add(dish.id)}>
+                                <Pressable style={styles.smallBtn} onPress={() => cartStore.add(dish.id)}>
                                     <Icon name="plus" size={20} color="#fff" />
                                 </Pressable>
                             </View>
