@@ -13,7 +13,7 @@ function MenuSkeleton({ frameWidth }) {
 const styles = StyleSheet.create({
     wrapper: {
         gap: 8,
-        paddingHorizontal: 8,
+        paddingHorizontal: 16,
     },
     row: {
         height: 260,
