@@ -23,7 +23,7 @@ function TopNavBar() {
 
             <View style={styles.secondHalf}>
                 <Pressable style={styles.navBtn} onPress={() => navigation.navigate('Cart')}>
-                    <Lucide name="shopping-cart" size={22} color="#fff" />
+                    <Lucide name="shopping-cart" size={20} color="#fff" />
                     {totalItems > 0 && (
                         <View style={styles.badgeWrapper}>
                             <Text style={styles.badgeText}>{totalItems > 20 ? '20+' : totalItems}</Text>
@@ -31,7 +31,7 @@ function TopNavBar() {
                     )}
                 </Pressable>
                 <Pressable style={styles.navBtn} onPress={() => navigation.navigate('Notifications')}>
-                    <Lucide name="bell" size={21} color="#fff" />
+                    <Lucide name="bell" size={19} color="#fff" />
                 </Pressable>
             </View>
         </View>
@@ -43,22 +43,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 16,
     },
     navBtnPlaceholder: {
-        width: 54,
-        height: 54,
+        width: 48,
+        height: 48,
     },
     secondHalf: {
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: 8,
+        gap: 4,
     },
     navBtn: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 54,
-        height: 54,
+        width: 48,
+        height: 48,
         borderRadius: 14,
         backgroundColor: '#00000072'
     },

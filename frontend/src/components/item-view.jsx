@@ -1,34 +1,38 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
+import dishesImage from "../../assets/image-maps/dishes-image-map";
+import { cartStore } from "../store/cart-store";
+import { formatPrice } from "../consonants/currency";
 
-function ItemView() {
+function ItemView({ line }) {
+    const { dish, quantity, lineTotal } = line;
     return(
         <View style={styles.itemsWrapper}>
             <View style={styles.upperHalf}>
                 <View style={styles.imageWrapper}>
                     <Image
-                        source={require("../../assets/images/dishes/burgers/grilled-chicken-cheese-burger.jpg")}
+                        source={dishesImage[dish.id]}
                         style={styles.image}
                         resizeMode="cover"
                     />
                 </View>
                 <View style={styles.nameUnitCostDesc}>
                     <Text style={styles.itemName} numberOfLines={2} ellipsizeMode="tail">
-                        Korean Spicy Chicken Burger <Text style={styles.unitPrice}>($320.00)</Text>
+                        {dish.name} <Text style={styles.unitPrice}>({formatPrice(dish.price)})</Text>
                     </Text>
                     <Text style={styles.itemDesc} numberOfLines={3} ellipsizeMode="tail">
-                        Juicy grilled chicken breast smothered in melted cheese, paired with fresh lettuce, tomatoes, and a smoky BBQ sauce in a brioche bun.
+                        {dish.description}
                     </Text>
                 </View>
                 <View style={styles.controls}>
                     <View style={styles.count}>
-                        <Text style={styles.countText}>2</Text>
+                        <Text style={styles.countText}>{quantity}</Text>
                     </View>
                     <View style={styles.controlsWrapper}>
-                        <Pressable style={styles.minusBtn}>
+                        <Pressable style={styles.minusBtn} onPress={() => cartStore.remove(dish.id)}>
                             <Icon name="minus" size={20} color="#fff" />
                         </Pressable>
-                        <Pressable style={styles.plusBtn}>
+                        <Pressable style={styles.plusBtn} onPress={() => cartStore.add(dish.id)}>
                             <Icon name="plus" size={20} color="#fff" />
                         </Pressable>
                     </View>
@@ -39,9 +43,7 @@ function ItemView() {
                     <View style={styles.connector}></View>
                     <Icon style={styles.arrow} name="chevron-thin-right" size={14}color="#00000072" />
                 </View>
-                <Text style={styles.totalCost}>
-                    640.00
-                </Text>
+                <Text style={styles.totalCost}>{formatPrice(lineTotal)}</Text>
             </View>
         </View>
     );
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         marginLeft: 'auto',
         gap: 4
     },
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
     connectorP: {
         flex: 1,
         alignSelf: 'stretch',
-        marginLeft: 20,
+        marginLeft: 16,
         justifyContent: 'center',
         alignItems: 'flex-end',
     },

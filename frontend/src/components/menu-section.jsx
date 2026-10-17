@@ -8,6 +8,7 @@ const MIN_CARD = 170;
 const MAX_COLUMNS = 4;
 const HEIGHT_RATIO = 1.25;
 const MIN_HEIGHT = 220;
+const SIDE_PADDING = 16;
 
 function getCardWidth(frameWidth) {
     if (frameWidth <= 0) return 0;
@@ -41,7 +42,7 @@ function CategoryRow({ category, frameWidth, cardWidth, rowHeight }) {
             <View style={styles.contentWrapper}>
                 {inverted ? (
                     <>
-                        <Pressable style={styles.nextBtn}>
+                        <Pressable style={styles.pBtn}>
                             <Feather name="chevron-left" size={22} color="#fff" />
                         </Pressable>
                         <Text style={styles.catHeading}>{title}</Text>
@@ -49,7 +50,7 @@ function CategoryRow({ category, frameWidth, cardWidth, rowHeight }) {
                 ) : (
                     <>
                         <Text style={styles.catHeading}>{title}</Text>
-                        <Pressable style={styles.nextBtn}>
+                        <Pressable style={styles.pBtn}>
                             <Feather name="chevron-right" size={22} color="#fff" />
                         </Pressable>
                     </>
@@ -78,7 +79,8 @@ function CategoryRow({ category, frameWidth, cardWidth, rowHeight }) {
 }
 
 function MenuSection({ frameWidth }) {
-    const cardWidth = getCardWidth(frameWidth);
+    const listWidth = frameWidth + 16 - SIDE_PADDING * 2;
+    const cardWidth = getCardWidth(listWidth);
     const rowHeight = Math.max(MIN_HEIGHT, cardWidth * HEIGHT_RATIO);
 
     return (
@@ -87,7 +89,7 @@ function MenuSection({ frameWidth }) {
                 <CategoryRow
                     key={category.key}
                     category={category}
-                    frameWidth={frameWidth}
+                    frameWidth={listWidth}
                     cardWidth={cardWidth}
                     rowHeight={rowHeight}
                 />
@@ -101,8 +103,8 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'column',
         alignItems: 'stretch',
-        paddingLeft: 8,
-        paddingRight: 8,
+        paddingLeft: 16,
+        paddingRight: 16,
         gap: GAP,
     },
     scrollCats: {
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
     },
     menuFrame: {
         borderRadius: 20,
-        padding: 20,
+        padding: 16,
     },
     contentWrapper: {
         flexDirection: 'row',
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         lineHeight: 35,
     },
-    nextBtn: {
+    pBtn: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

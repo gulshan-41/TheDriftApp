@@ -1,22 +1,25 @@
 import { useEffect, useRef } from 'react';
-import { Text, View, Pressable, StyleSheet, Animated } from 'react-native';
+import { useSafeAreaInsets} from 'react-native-safe-area-context';
+import { View, Pressable, StyleSheet, Animated } from 'react-native';
 import { useScroll } from '../context/scroll-context';
 import { Lucide } from '@react-native-vector-icons/lucide';
 import Feather from 'react-native-vector-icons/Feather';
 
-const BUTTON_SIZE = 56;
+const BOTTOM_MARGIN = 8;
+const BUTTON_SIZE = 52;
 const GAP = 8;
-const PADDING = 14;
+const PADDING = 10;
 
 const ICONS = {
-    Home: (color) => <Lucide name="tv-minimal" size={24} color={color} />,
-    Menu: (color) => <Lucide name="notebook" size={24} color={color} />,
-    Cart: (color) => <Lucide name="shopping-cart" size={25} color={color} />,
-    Scan: (color) => <Lucide name="scan-line" size={25} color={color} />,
-    Profile: (color) => <Feather name="user" size={26} color={color} />,
+    Home: (color) => <Lucide name="tv-minimal" size={22} color={color} />,
+    Menu: (color) => <Lucide name="notebook" size={22} color={color} />,
+    Cart: (color) => <Lucide name="shopping-cart" size={23} color={color} />,
+    Scan: (color) => <Lucide name="scan-line" size={23} color={color} />,
+    Profile: (color) => <Feather name="user" size={24} color={color} />,
 };
 
 function BottomNavBar({ state, navigation }) {
+    const insets = useSafeAreaInsets();
     const { translateY } = useScroll();
 
     const translateX = useRef(new Animated.Value(0)).current;
@@ -36,7 +39,7 @@ function BottomNavBar({ state, navigation }) {
         <Animated.View 
             style={[
                 styles.mainNavBarWrapper, 
-                { transform: [{ translateY }] }
+                { bottom: insets.bottom + BOTTOM_MARGIN, transform: [{ translateY }] }
             ]}
             pointerEvents="box-none"
         >
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 54,
     },
     bottomNavBarWrapper: {
         flexDirection: 'row',

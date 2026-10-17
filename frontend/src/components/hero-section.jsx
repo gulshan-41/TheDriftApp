@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'column',
         alignItems: 'stretch',
-        paddingLeft: 8,
-        paddingRight: 8,
+        paddingLeft: 16,
+        paddingRight: 16,
     },
     heroWrapper: {
         width: '100%',

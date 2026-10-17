@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     aboutSection: {
         width: '100%',
         flexDirection: 'column',
-        paddingLeft: 8,
-        paddingRight: 8,
+        paddingLeft: 16,
+        paddingRight: 16,
         marginTop: 40,
     },
     aboutWrapper: {
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 50,
-        height: 50,
+        width: 48,
+        height: 48,
         borderRadius: 14,
         backgroundColor: '#fff',
     },
